@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Initializing...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background-color: #0f0f0f;
+      color: #00ff99;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .glow {
+      text-shadow: 0 0 5px #00ff99, 0 0 10px #00ff99, 0 0 20px #00ff99;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .terminal {
+      background-color: #000000cc;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ff99;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .line {
+      margin: 0.5rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #00ff99;
+      width: 0;
+      animation: typing 2s steps(40, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    .line.delay-1 {
+      animation-delay: 1s;
+    }
+
+    .line.delay-2 {
+      animation-delay: 3s;
+    }
+
+    .line.delay-3 {
+      animation-delay: 5s;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .countdown {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .glow {
+        font-size: 1.4rem;
+      }
+
+      .terminal {
+        padding: 1rem;
+      }
+
+      .line {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        border: none;
+        width: 100% !important;
+        animation: none !important;
+      }
+
+      .countdown {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="glow">> SYSTEM INITIALIZING...</h1>
+
+  <div class="terminal">
+    <div class="line delay-1">> Accessing core protocols...</div>
+    <div class="line delay-2">> Establishing encrypted channels...</div>
+    <div class="line delay-3">> Launch sequence initiated — something big is coming in NCBAE</div>
+  </div>
+
+  <div class="countdown" id="countdown"></div>
+
+  <script>
+    // Set the date of the event
+    const eventDate = new Date(2025, 3, 15, 11, 0, 0).getTime();
+
+    const countdown = document.getElementById("countdown");
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdown.innerHTML = "> ACCESS GRANTED";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `> T-MINUS ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+</body>
+</html>
